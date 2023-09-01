@@ -195,7 +195,7 @@ async def on_message(message):
 async def on_message(message):
 	if "pikmin" in message.content:
 		if message.author.id == client.user.id:
-			if message.channel.type = "private":
+			if message.channel.type == "private":
 				await message.reply("pikmin :]")
 			else:
 				pass
