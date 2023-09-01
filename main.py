@@ -34,6 +34,7 @@ async def on_ready():
 	server = client.get_guild(903236631958548501)
 
 	if olimar.voice != None:
+		await sleep(randint(128,1024))
 		await olimar.voice.channel.connect(reconnect=False)
 		#server.voice_client.play(discord.PCMAudio(heypikmin))
 
@@ -193,11 +194,19 @@ async def on_message(message):
 @client.event
 async def on_message(message):
 	if "pikmin" in message.content:
-		if message.author.id == 616228691155877898:
-			client.get_guild(903236631958548501).voice_client.stop()
-			heypikmin = open("sounds/pikmin.raw","rb")
-			client.get_guild(903236631958548501).voice_client.play(discord.PCMAudio(heypikmin))
-	
+		if message.author.id == client.user.id:
+			if message.channel.type != "private":
+				pass
+			else:
+				await message.reply("pikmin :]")
+		else:
+
+		#if message.author.id == 616228691155877898:
+		#client.get_guild(903236631958548501).voice_client.stop()
+		#heypikmin = open("sounds/pikmin.raw","rb")
+		#client.get_guild(903236631958548501).voice_client.play(discord.PCMAudio(heypikmin))
+			await message.reply("pikmin :]")
+
 	if message.author.id == 431809762024488960:
 		if randint(1,5) == 1:
 			await message.channel.send("pikmin :]")
@@ -205,7 +214,32 @@ async def on_message(message):
 	if message.author.id == 769632057575342081:
 		if randint(1,50) == 1:
 			await message.channel.send("pikmin :]")
+	
+	if "https://www.youtube.com/watch?v=bbmSBLaZ6Ps" in message.content:
+		await message.delete()
 
+	#if "bingungppp" in message.content:
+	#	msg = await client.get_channel(928950243041615892).fetch_message(1145350761253961769)
+	#	print(msg)
+	#	print(msg.content)
+	#	await msg.delete()
+
+
+@client.event
+async def on_member_update(before, after):
+	benjamin = await client.get_guild(903236631958548501).fetch_roles()
+	for p in benjamin:
+		if p.name == "benjamin":
+		#	await p.delete(reason="no benjamin :[ -pikmin")
+			for pp in p.members:
+				if pp.id != 270983683723362304:
+					await p.delete(reason="no benjamin :[ -pikmin")
+					await sleep(1)
+					ppp = await client.get_guild(903236631958548501).create_role(name="benjamin", hoist=True, reason="benjamin :] -pikmin")
+					await client.get_guild(903236631958548501).get_member(270983683723362304).add_roles(ppp)
+					await sleep(1)
+					break
+			break
 """
 @client.event
 async def on_message(message):
